@@ -27,7 +27,7 @@ I don't know where to find tab-delimited copies of the Oxford 1769 KJV out there
 If you are willing to create one that works with this program, I will gladly add it to this repository.
 The PCE (Pure Cambridge Edition) is what is included here, because Bible Protector provides a tab-delimited edition of it.
 
-Please note that Revelation 22:21 had to be modified from the included original text document to remove the uninspired addition, "<<THE END>>"
+Please note that Revelation 22:21 had to be modified from the included original text document to remove the uninspired addition, `<<THE END>>`
 which is included in the text document.
 If you decide to overwrite bible.txt with that text document, you will have to re-do this modification!
 
