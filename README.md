@@ -136,7 +136,7 @@ Furthermore, it is debatable whether or not the use of "Brass" in english antiqu
 (I have yet to investigate)
 
 
-"<verse> isn't supported in any manuscripts the KJV is supposedly based on!"
+"verse X:X:X isn't supported in any manuscripts the KJV is supposedly based on!"
 I think the actual exact manuscripts the KJV translators used may not even be available or exist today.
 
 
