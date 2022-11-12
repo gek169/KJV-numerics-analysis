@@ -101,8 +101,11 @@ I still have unanswered prayers about where I can find perfect copies of the 66 
 # "I can prove the KJV is not inspired!"
 
 I've seen lots of these. Lots of them are using modern definitions of words that had different meanings in the past,
-ignoring the context of a verse, or claiming that a particular rendering is "unsupported in the original manuscripts".
+ignoring the context of a verse, or claiming baselessly that a particular rendering is "unsupported in the original manuscripts".
 
+Regardless, post it in the issues of this repository.
+
+Let me list off some common objections that are not actual disproofs:
 
 One of the most recent ones I think I've solved is "How old was Ahaziah when he began to reign?"
 
@@ -116,12 +119,58 @@ officially crowned ceremonially as king in Jerusalem, to reign a single year bef
 (It is an outstanding question whether his mother Athaliah would still have been capable of reigning for six years after Ahaziah died.)
 
 
-Regardless, post it in the issues of this repository.
+
+"Acts 12:4 should say passover!"
+This one backfires massively. Passover has already passed (Acts 12:3) So was Peter held in prison for a whole year?
+You can say that passover refers to the entire festival (Passover + Unleavened Bread) but I am not sure there is
+evidence that this is a valid resolution.
+Furthermore, John seems to act as if "Pascha" in the greek can refer to something other than the Jewish pesach.
+John 2:13 "And the Jews' passover was at hand, and Jesus went up to Jerusalem,"
+
+
+"You can't dig brass out of a hill, it is an alloy (Deut 8:9)"
+You can dig the materials to make brass out of hills.
+The very same verse mentions stones that "are" iron.
+Unless you actually believe that Israel is filled with stones made of pure ferrum, I'm afraid you've lost this one.
+Furthermore, it is debatable whether or not the use of "Brass" in english antiquity could also refer to Copper.
+(I have yet to investigate)
+
+
+"<verse> isn't supported in any manuscripts the KJV is supposedly based on!"
+I think the actual exact manuscripts the KJV translators used may not even be available or exist today.
+
+
+
+"Thou shalt not revile the gods? (Ex 22:28)"
+This one is the best attempt at debunking the KJV I've found so far.
+The very next verse discusses offerings to the God of Israel.
+The translation of "Elohim" to "gods" here would at first seem totally out-of-context and violating
+any sensible translation rules.
+
+However, Jesus said something interesting on this very subject!
+
+“Jesus answered them, Is it not written in your law, I said, Ye are gods?” (John 10:34)
+
+The actual quote comes from Psalm 82:6, however, the jews typically made a distinction between the Law and
+the Psalms and the Prophets.
+
+Furthermore, Psalm 82:6 seems to be past tense. "I have said" not "I say".
+This would suggest that it was previously stated elsewhere.
+
+As far as I know, there is nowhere in the Law of Moses that you can find God referring to people as gods...
+Unless you count this verse right here!
+
+Thus, "gods" here is not referring to the false idols of the nations, but rather to the judges and high officials
+over any group. A parallel verse to the pauline command not to resist authority (Romans 13:1-2), and the command 
+in the gospels to render unto caesar what is caesar's (Matthew 22:21)
+
+The verse in question is talking about the rulers of the people, which would obviously include God, the government of Israel,
+the judges who have authority to judge in israel, and most likely the angels which are given authority and power by God as well.
 
 # Can I use this repository?
 All the code is in the public domain.
-The KJV text is of course public domain, and bible-protector provides it for free with a recommendation to share, but they do not publish
-a license.
+The KJV text is of course public domain, and bible-protector provides it for free with an implicit recommendation to print/use/share,
+but they do not publish a license.
 
 
 As such, the repository as a whole cannot be said firmly to be public domain, but the .c and .h files in this repository are.
