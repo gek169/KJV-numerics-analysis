@@ -69,6 +69,6 @@ a license.
 As such, the repository as a whole cannot be said firmly to be public domain, but the .c and .h files in this repository are.
 (to clarify these files are public domain: main.c, stringutil.h, README.md, and Makefile)
 I cannot confirm that bible.txt and TEXT-PCE-127-TAB.txt are public domain, although bible protector would most likely claim they are.
-Their work tab delimiting the text may or may not be public domain.
+The work tab delimiting the text may or may not be public domain.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 “Let all your things be done with charity.” - 1 Corinthians 16:14
