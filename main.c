@@ -130,7 +130,6 @@ void verse_count_characters(bibleverse* v, char* lvowels, char* lconsonants){
 		if(is_consonant || is_vowel){
 			if((*q <= 'Z') && (*q >= 'A')) v->capitals++;
 			if((*q <= 'z') && (*q >= 'a')) v->lowercases++;
-			v->letters++;
 		}
 		if(is_consonant && is_vowel) printf("[BOTH CONSONANT AND VOWEL ERROR? HUH? '%c']",*q); /*Why didn't I put it inside the above if clause? idk /shrug*/
 		v->characters++;
