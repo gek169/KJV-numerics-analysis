@@ -181,8 +181,11 @@ void biblesearch(int searchmode, char* bookname, long chapter, long verse){ /*mo
 					if(currentverse.consonants == consonant_count) printf("[consonants]");
 					if(currentverse.letters == letter_count) printf("[consonants]");
 				}
-				if((soft_recognition && (printmode == 0)) || (printmode == 1)  )
-				verse_print(&currentverse,printmode);
+				if(printmode == 0)
+					if(soft_recognition)
+						verse_print(&currentverse,printmode);
+				if(printmode == 1)  
+					verse_print(&currentverse,printmode);
 
 				if(vowel_count == currentverse.vowels) nverses_vowelcount++;
 				if(consonant_count == currentverse.consonants) nverses_consonantcount++;
@@ -251,9 +254,9 @@ int main(int argc, char** argv){
 		puts("To study KJV variants, simply alter bible.txt to match your KJV edition.");
 		puts("[Analyzing the original spelling of the 1611 is currently not implemented]");
 		puts("See http://www.bibleprotector.com/editions.htm for a list of recorded variants.");
-		puts("blcount vowel_count consonant_count [y_is_vowel=0]");
+		puts("blcount vowel_count consonant_count [y_is_vowel=0] [soft_recognition=0]");
 		puts("You can also use a particular bible verse as a template to get letter/consonant/vowel counts.");
-		puts("blcount -1 bookname chapternumber versenumber [y_is_vowel=0]");
+		puts("blcount -1 bookname chapternumber versenumber [y_is_vowel=0] [soft_recognition=0]");
 		puts("Try analyzing Genesis 1:1, 2 Corinthians 10:9, or Revelation 22:21!");
 		return 1;
 	}
@@ -264,7 +267,7 @@ int main(int argc, char** argv){
 		/*Do we have enough arguments?*/
 		if(argc < 5) goto help;
 		if(argc > 5) y_is_vowel = strtol(argv[5],0,0); else y_is_vowel = 0;
-		if(argc > 6) soft_recognition = strtol(argv[5],0,0); else soft_recognition = 0;
+		if(argc > 6) soft_recognition = strtol(argv[6],0,0); else soft_recognition = 0;
 		/*Harvest data from a particular chapter and verse.*/
 		biblesearch(1,argv[2],strtol(argv[3],0,10), strtol(argv[4],0,10));
 		fclose(bible_file);
