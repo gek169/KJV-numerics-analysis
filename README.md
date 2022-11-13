@@ -9,9 +9,9 @@ with standardized spelling as established in the 1700s, is preserved by God's di
 This repository started because I was investigating the numerical properties of Genesis 1:1, Revelation 22:21 and
 2 Corinthians 10:9.
 
-I have included other bibles as well, which, from my testing, do not appear to share the same property,
-nor seem to have any evidence of divine inspiration when picking out random verses to check for matching
-letter/vowel/consonant counts.
+I have included other bibles as well, which, from my testing, do not appear to share the same property.
+
+Intriguingly enough, some of the patterns are the same.
 
 You can compile those versions using the Makefile.
 
