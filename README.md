@@ -182,6 +182,10 @@ As such, the repository as a whole cannot be said firmly to be public domain, bu
 I cannot confirm that bible.txt and TEXT-PCE-127-TAB.txt are public domain, although bible protector would most likely claim they are.
 The work tab delimiting the text may or may not be public domain.
 
+Additional bible texts can be found here:
+https://openbible.com/texts.htm
+
+
 TL;DR
 YES. But if you are going to redistribute, please credit Bible Protector for the Bible text documents.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
