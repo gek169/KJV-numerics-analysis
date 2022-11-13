@@ -264,6 +264,7 @@ int main(int argc, char** argv){
 		/*Do we have enough arguments?*/
 		if(argc < 5) goto help;
 		if(argc > 5) y_is_vowel = strtol(argv[5],0,0); else y_is_vowel = 0;
+		if(argc > 6) soft_recognition = strtol(argv[5],0,0); else soft_recognition = 0;
 		/*Harvest data from a particular chapter and verse.*/
 		biblesearch(1,argv[2],strtol(argv[3],0,10), strtol(argv[4],0,10));
 		fclose(bible_file);
@@ -274,8 +275,10 @@ int main(int argc, char** argv){
 		consonant_count = strtoll(argv[2],0,0);
 		letter_count = vowel_count + consonant_count;
 		y_is_vowel = 0; /*Default: No.*/
-		if(argc >3 && !commandline_asked_for_match_mode) /*Not  */
+		if(argc >3)
 			y_is_vowel = strtol(argv[3],0,0);
+		if(argc >4)
+			soft_recognition = strtol(argv[4],0,0);
 	}
 	if(y_is_vowel){
 		consonants = consonants_y_is_vowel;
