@@ -1,18 +1,23 @@
 #include <stdio.h>
 #include <math.h>
 #include "stringutil.h"
+
 #ifndef BIBLE_FILE_LOC_LOCAL
 #define BIBLE_FILE_LOC_LOCAL "bible.txt"
 #endif
+
 #ifndef BIBLE_FILE_LOC_INSTALLED
 #define BIBLE_FILE_LOC_INSTALLED "/usr/share/bible.txt"
 #endif
+
 FILE* bible_file = NULL;
 typedef struct{
 	char* text;
 	char* bookname;
+#ifndef BH_VERSE_STRUCTURE
 	long chapter;
 	long verse;
+#endif
 	long vowels;
 	long consonants;
 	long letters;
@@ -23,7 +28,33 @@ typedef struct{
 	long lowercases;
 } bibleverse;
 
-/**/
+/*Biblehub downloadable text versions structure.*/
+#ifdef BH_VERSE_STRUCTURE
+bibleverse create_verse_struct(char* orig_text){
+	bibleverse returnme;
+	static const bibleverse empty = {0};
+	returnme = empty; /*initialize to NULL*/
+	long loc;
+	/*skip the first two tabs.*/
+	/*first, find the tab after the book number (1-66)*/
+	loc = strfind(orig_text, "\t"); if(loc <1) goto need_to_free;
+	/*we have found the tab that is immediately after the complete book name and number:number and whatnot.*/
+	orig_text[loc] = '\0';
+	returnme.bookname = strcatalloc("",orig_text); /*FROM HERE ON OUT, WE HAVE ALLOCATED SOMETHING! MUST USE NEED_FREE*/
+	orig_text[loc] = '\t'; /*return it to its previous state.*/
+	loc++;orig_text += loc; /*skip the tab after the book name*/
+
+	returnme.text = strcatalloc("",orig_text);
+	return returnme;
+	/*This portion is only executed in case of an error.*/
+	
+	need_to_free:
+		if(returnme.text) free(returnme.text);
+		if(returnme.bookname) free(returnme.bookname);
+		puts("[VERSE WITH INVALID SYNTAX DETECTED!]\r\n");
+	return empty;
+}
+#else
 bibleverse create_verse_struct(char* orig_text){
 	bibleverse returnme;
 	static const bibleverse empty = {0};
@@ -70,14 +101,22 @@ bibleverse create_verse_struct(char* orig_text){
 		puts("[VERSE WITH INVALID SYNTAX DETECTED!]\r\n");
 	return empty;
 }
-
+#endif
 
 
 void verse_print(bibleverse* v, int mode){
+
+#ifndef BH_VERSE_STRUCTURE
 	if(mode == 0) /*basic*/
 		printf("%s\t\t%ld:%ld\r\n",v->bookname,v->chapter,v->verse);
 	else if(mode == 1)
 		printf("%s\t\t%ld:%ld\r\n%s\r\n",v->bookname,v->chapter,v->verse,v->text);
+#else
+	if(mode == 0) /*basic*/
+		printf("%s\r\n",v->bookname);
+	else if(mode == 1)
+		printf("%s\r\n%s\r\n",v->bookname,v->text);
+#endif
 }
 
 /*bibleverse* qualifying_verses = NULL;*/
@@ -162,8 +201,11 @@ void biblesearch(int searchmode, char* bookname, long chapter, long verse){ /*mo
 		if(!currentverse.text) goto attempt_free; /*invalid line?*/
 		if(!currentverse.bookname) goto attempt_free; /*invalid bookname?*/
 		/*invalid chapter and verse?*/
+
+#ifndef BH_VERSE_STRUCTURE
 		if(currentverse.chapter < 1) goto attempt_free;
 		if(currentverse.verse < 1) goto attempt_free;
+#endif
 		/*We have a valid verse struct, count vowels and whatnot!*/
 		verse_count_characters(&currentverse, vowels, consonants);
 		/*
@@ -202,18 +244,29 @@ void biblesearch(int searchmode, char* bookname, long chapter, long verse){ /*mo
 			/*compare the two.*/
 			if(strcmp(bookname,currentverse.bookname)) goto attempt_free;
 			/*The book names are the same. compare the chapter and verse.*/
+#ifndef BH_VERSE_STRUCTURE
 			if((chapter == currentverse.chapter) && (verse == currentverse.verse))
+#endif
 			{
 				verse_count_characters(&currentverse,NULL,NULL); /*the function will pick sensible defaults.*/
 				vowel_count = currentverse.vowels;
 				consonant_count = currentverse.consonants;
 				letter_count = currentverse.letters;
+#ifndef BH_VERSE_STRUCTURE
 				printf(
 					"%s %ld:%ld has %lld vowels, %lld consonants, and %lld letters. Text:\r\n%s\r\n~~~~~~~~~~~~~~~~~~~~~~~\r\n\n\n\n",
 					bookname,chapter,verse,
 					vowel_count,consonant_count,letter_count,
 					currentverse.text
 				);
+#else
+				printf(
+					"%s has %lld vowels, %lld consonants, and %lld letters. Text:\r\n%s\r\n~~~~~~~~~~~~~~~~~~~~~~~\r\n\n\n\n",
+					bookname,
+					vowel_count,consonant_count,letter_count,
+					currentverse.text
+				);
+#endif
 				if(line){free(line);line = NULL;}
 				if(currentverse.text){free(currentverse.text);currentverse.text = NULL;}
 				if(currentverse.bookname){free(currentverse.bookname);currentverse.bookname = NULL;}
@@ -256,7 +309,11 @@ int main(int argc, char** argv){
 		puts("See http://www.bibleprotector.com/editions.htm for a list of recorded variants.");
 		puts("blcount vowel_count consonant_count [y_is_vowel=0] [soft_recognition=0]");
 		puts("You can also use a particular bible verse as a template to get letter/consonant/vowel counts.");
+#ifndef BH_VERSE_STRUCTURE
 		puts("blcount -1 bookname chapternumber versenumber [y_is_vowel=0] [soft_recognition=0]");
+#else
+		puts("blcount -1 bookname\\ chapter:verse [y_is_vowel=0] [soft_recognition=0]");
+#endif
 		puts("Try analyzing Genesis 1:1, 2 Corinthians 10:9, or Revelation 22:21!");
 		return 1;
 	}
@@ -265,11 +322,24 @@ int main(int argc, char** argv){
 		/*All of the following arguments are: bookname, chapternumber, versenumber, [y_is_vowel]*/
 		commandline_asked_for_match_mode = 1;
 		/*Do we have enough arguments?*/
+#ifndef BH_VERSE_STRUCTURE
 		if(argc < 5) goto help;
-		if(argc > 5) y_is_vowel = strtol(argv[5],0,0); else y_is_vowel = 0;
+#else
+		if(argc < 3) goto help;
+#endif
+
+#ifndef BH_VERSE_STRUCTURE
+		if(argc > 5) y_is_vowel = strtol(argv[3],0,0); else y_is_vowel = 0;
 		if(argc > 6) soft_recognition = strtol(argv[6],0,0); else soft_recognition = 0;
 		/*Harvest data from a particular chapter and verse.*/
 		biblesearch(1,argv[2],strtol(argv[3],0,10), strtol(argv[4],0,10));
+#else
+		if(argc > 3) y_is_vowel = strtol(argv[3],0,0); else y_is_vowel = 0;
+		if(argc > 4) soft_recognition = strtol(argv[4],0,0); else soft_recognition = 0;
+		biblesearch(1,argv[2],0,0);
+#endif
+		
+
 		fclose(bible_file);
 		open_bible_file();
 	}

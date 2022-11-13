@@ -9,6 +9,12 @@ with standardized spelling as established in the 1700s, is preserved by God's di
 This repository started because I was investigating the numerical properties of Genesis 1:1, Revelation 22:21 and
 2 Corinthians 10:9.
 
+I have included other bibles as well, which, from my testing, do not appear to share the same property,
+nor seem to have any evidence of divine inspiration when picking out random verses to check for matching
+letter/vowel/consonant counts.
+
+You can compile those versions using the Makefile.
+
 # Why would counting letters prove the inspiration of the KJV?
 
 It is a pattern which seems to be alluded to in the text itself (2 Corinthians 10:9) eerily indicating
@@ -181,6 +187,9 @@ As such, the repository as a whole cannot be said firmly to be public domain, bu
 
 I cannot confirm that bible.txt and TEXT-PCE-127-TAB.txt are public domain, although bible protector would most likely claim they are.
 The work tab delimiting the text may or may not be public domain.
+
+The additional bible texts added are most likely public domain but again, I do not know if the tab delimiting work counts as a
+derivative work.
 
 Additional bible texts can be found here:
 https://openbible.com/texts.htm
