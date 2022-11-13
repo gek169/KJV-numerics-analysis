@@ -14,3 +14,6 @@ clean:
 uninstall:
 	rm -f /usr/bin/blcount
 	rm -f /usr/share/bible.txt
+
+gitu:
+	git add .;git commit -m "F";git push
